@@ -41,7 +41,5 @@ public class JwtUtil {
             return false;
         }
     }
-    public void method(){
 
-    }
 }
