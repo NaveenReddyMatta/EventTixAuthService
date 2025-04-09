@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
@@ -55,10 +56,9 @@ public class AuthController {
             List<Event> events = null;
 
             if ("USER".equalsIgnoreCase(role)) {
-                // Show event list
-                 events = eventClient.getEvents();
-                return ResponseEntity.ok().body(events + " "+ token);
-            } else if ("ORGANIZER".equalsIgnoreCase(role)) {
+                return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
+            }
+            else if ("ORGANIZER".equalsIgnoreCase(role)) {
                 // Optionally fetch organizer-specific events
              //   events = eventClient.getEvents(); // or organizer-specific method
                 return ResponseEntity.ok().body("Organizer" +" "+ token);
