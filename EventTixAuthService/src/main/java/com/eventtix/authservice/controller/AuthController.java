@@ -61,7 +61,7 @@ public class AuthController {
             else if ("ORGANIZER".equalsIgnoreCase(role)) {
                 // Optionally fetch organizer-specific events
              //   events = eventClient.getEvents(); // or organizer-specific method
-                return ResponseEntity.ok().body("Organizer" +" "+ token);
+                return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
             } else if ("ADMIN".equalsIgnoreCase(role)) {
                 // Fetch all events and optionally users (via Feign if set up)
 
