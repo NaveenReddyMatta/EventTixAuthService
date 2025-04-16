@@ -64,8 +64,7 @@ public class AuthController {
                 return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
             } else if ("ADMIN".equalsIgnoreCase(role)) {
                 // Fetch all events and optionally users (via Feign if set up)
-
-                return ResponseEntity.ok().body("Admin" + " " + token);
+                return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
             }
 
 
@@ -80,7 +79,7 @@ public class AuthController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(401).body("❌ Invalid email or password");
+            return ResponseEntity.status(401).body(" Invalid email or password");
         }
     }
 }
