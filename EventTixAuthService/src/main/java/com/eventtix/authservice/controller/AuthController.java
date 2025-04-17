@@ -2,11 +2,8 @@ package com.eventtix.authservice.controller;
 
 import com.eventtix.authservice.Utility.JwtUtil;
 import com.eventtix.authservice.feignclient.EventClient;
-import com.eventtix.authservice.model.Event;
-import com.eventtix.authservice.model.LoginResponse;
+import com.eventtix.authservice.model.*;
 import com.eventtix.authservice.feignclient.UserClient;
-import com.eventtix.authservice.model.LoginRequest;
-import com.eventtix.authservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -61,7 +58,8 @@ public class AuthController {
             else if ("ORGANIZER".equalsIgnoreCase(role)) {
                 // Optionally fetch organizer-specific events
              //   events = eventClient.getEvents(); // or organizer-specific method
-                return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
+
+                return ResponseEntity.ok().body(new OrganizerResponse(token, user.getEmail(), user.getRole(), user.getOrganizerid()));
             } else if ("ADMIN".equalsIgnoreCase(role)) {
                 // Fetch all events and optionally users (via Feign if set up)
                 return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));

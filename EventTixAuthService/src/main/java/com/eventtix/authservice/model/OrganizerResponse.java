@@ -1,19 +1,13 @@
 package com.eventtix.authservice.model;
 
-import jdk.jfr.Event;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
-public class LoginResponse {
+public class OrganizerResponse {
     private String token;
     private String email;
     private Role role;
-
-   // private List<Event> events;
-
-
+    private Long organizerid;
 }

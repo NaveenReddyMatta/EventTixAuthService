@@ -15,5 +15,5 @@ public class User {
     private String email;
     private Role  role;
     private String password;
-
+    private Long organizerid;
 }
