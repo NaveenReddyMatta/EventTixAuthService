@@ -16,7 +16,7 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
-    // ✅ Generate token with email and role
+    //  Generate token with email and role
     public String generateToken(String email, String role) {
         return Jwts.builder()
                 .setSubject(email)
@@ -28,7 +28,7 @@ public class JwtUtil {
     }
 
 
-    // ✅ Extract email
+    //  Extract email
     public String extractEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
@@ -38,7 +38,7 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    // ✅ Extract role
+    //  Extract role
     public String extractRole(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
@@ -48,7 +48,7 @@ public class JwtUtil {
                 .get("role", String.class);
     }
 
-    // ✅ Validate token
+    //  Validate token
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);

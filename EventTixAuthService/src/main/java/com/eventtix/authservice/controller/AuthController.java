@@ -58,21 +58,12 @@ public class AuthController {
             else if ("ORGANIZER".equalsIgnoreCase(role)) {
                 // Optionally fetch organizer-specific events
              //   events = eventClient.getEvents(); // or organizer-specific method
-
                 return ResponseEntity.ok().body(new OrganizerResponse(token, user.getEmail(), user.getRole(), user.getOrganizerid()));
             } else if ("ADMIN".equalsIgnoreCase(role)) {
                 // Fetch all events and optionally users (via Feign if set up)
                 return ResponseEntity.ok().body(new LoginResponse(token, user.getEmail(), user.getRole()));
             }
 
-
-
-
-//            //  3. Call Event Service
-//            List<Event> events = eventClient.getEvents();
-
-            //  4. Return login response with token and events
-           // LoginResponse response = new LoginResponse(token, user.getEmail(), user.getRole());
            return ResponseEntity.status(403).body("Inavlid Role");
 
         } catch (Exception e) {
